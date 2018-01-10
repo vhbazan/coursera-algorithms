@@ -13,18 +13,13 @@ public class FractionalKnapsack {
             Item item = new Item(weights[i], values[i]);
             items[i] = item;
         }
-        System.out.println(Arrays.toString(items));
 
-       Arrays.sort(items);
-
-        System.out.println(Arrays.toString(items));
-
+        Arrays.sort(items);
         //items array is descending sorted by value_per_unit
 
         int i = 0;
 
         while (i<items.length && capacityDouble>0) {
-            System.out.println("capacity: " + capacityDouble);
             //fits? weight <= capacity
             if(items[i].weight <= capacityDouble) {
                 value += items[i].value;
@@ -36,7 +31,6 @@ public class FractionalKnapsack {
             }
             i++;
         }
-        System.out.println("value: " + value);
         return value;
     }
 
