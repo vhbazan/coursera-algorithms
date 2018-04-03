@@ -15,11 +15,23 @@ public class BracketTest {
 
     @Test
     public void basicMatchBracketTest () {
+        Assert.assertEquals("empty should return 0 ", "0", bracket.match(""));
         Assert.assertEquals("[] should return Success ", "Success", bracket.match("[]"));
         Assert.assertEquals("{}[] should return Success ", "Success", bracket.match("[]"));
         Assert.assertEquals("] should return 1 ", "1", bracket.match("]"));
+        Assert.assertEquals("[[[ should return 3? ", "3", bracket.match("[[["));
         Assert.assertEquals("[ should return 1 ", "1", bracket.match("["));
-
+        Assert.assertEquals("()[} should return 4 ", "4", bracket.match("()[}"));
+    }
+    @Test
+    public void advancedMatchBracketTest () {
+        Assert.assertEquals("([]){}((()))[{}] should return Success ", "Success", bracket.match("([]){}((()))[{}]"));
+        Assert.assertEquals("(({}[])) should return Success ", "Success", bracket.match("(({}[]))"));
+        Assert.assertEquals("] should return 1 ", "1", bracket.match("]"));
+        Assert.assertEquals("[[[{{}[ should return 7? ", "7", bracket.match("[[[{{}["));
+        Assert.assertEquals("{[} should return 3 ", "3", bracket.match("{[}"));
+        Assert.assertEquals("foo(bar); should return Success", "Success", bracket.match("foo(bar);"));
+        Assert.assertEquals("foo(bar[i); should return 10", "10", bracket.match("foo(bar[i);"));
 
     }
 }
